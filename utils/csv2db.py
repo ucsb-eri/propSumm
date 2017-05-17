@@ -62,6 +62,7 @@ with open ('test.csv', 'r') as f:
     cursor = conn.cursor()
     for data in reader:
         #print query
+        # Lets tweak/cleanup the date fields of the CSV input
         for di in dateFields:
             data[di] = re.sub(' 00:00:00','',data[di])
             data[di] = re.sub('00/00/0','0000-00-00',data[di])
@@ -69,7 +70,7 @@ with open ('test.csv', 'r') as f:
             if gm and len(gm.groups()) == 3:
                 data[di] = gm.group(3) + '-' + gm.group(2) + '-' + gm.group(1)
 
-        #print data[9],data[10],data[12],data[13],data[19],data[21]
+        # Insert the data
         cursor.execute(query, data)
     conn.commit()
 conn.close()
