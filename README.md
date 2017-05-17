@@ -2,6 +2,9 @@
 
 Assembling proposal summary data.  Maybe provide some graphs.
 
+See **README.md** file in **sampleData** folder about creating the data files.  Will
+need the original data file.
+
 ## General layout
 + **utils** - scripts for processing
 + **run** - folder with a Makefile to provide make targets for specific tasks
