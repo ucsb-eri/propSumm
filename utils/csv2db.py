@@ -7,36 +7,37 @@ import re
 
 
 fields = [
-  "Seq_Num integer",
-  "Title text",
-  "Agency text",
-  "Agency_SeqNum text",
-  "Agency_Number text",
-  "Center text",
-  "Status text",
-  "Type text",
-  "Amount text",
-  "Start_Date date",
-  "End_Date date",
-  "OR_Record_Number text",
-  "Date_Submitted date",
-  "Fiscal_Year_Submitted text",
-  "Notes text",
-  "History text",
-  "IDC_Rate_Type text",
-  "Doc_Notes text",
-  "PI_Name_Display text",
-  "Status_Date date",
-  "Revised_Budget text",
-  "Revision_Date date",
-  "Due_Date date",
-  "PI_Order_Number text",
-  "PI_Code text",
-  "First_Name text",
-  "Middle_Name text",
-  "Last_Name text",
-  "Dept text",
-  "PI_Title text"
+  "Seq_Num INTEGER",
+  "Title TEXT",
+  "Agency TEXT",
+  "Agency_SeqNum INTEGER",
+  "Agency_Number TEXT",
+  "Center TEXT",
+  "Status TEXT",
+  "Type TEXT",
+  "Amount INTEGER",
+  "Start_Date DATE",
+  "End_Date DATE",
+  "OR_Record_Number TEXT",
+  "Date_Submitted DATE",
+  "Fiscal_Year_Submitted TEXT",
+  "Notes TEXT",
+  "History TEXT",
+  "IDC_Rate_Type TEXT",
+  "Doc_Notes TEXT",
+  "PI_Name_Display TEXT",
+  "Status_Date DATE",
+  "Revised_Budget TEXT",
+  "Revision_Date DATE",
+  "Due_Date DATE",
+  "PI_Order_Number INTEGER",
+  "PI_Code TEXT",
+  "First_Name TEXT",
+  "Middle_Name TEXT",
+  "Last_Name TEXT",
+  "Dept TEXT",
+  "PI_Title TEXT",
+  "epoch INTEGER DEFAULT (STRFTIME('%s','now'))"
 ]
 
 dateFields = [9,10,12,13,19,21,22]
@@ -51,6 +52,8 @@ c = conn.cursor()
 c.execute('drop table if exists proposals;')
 c.execute('create table if not exists proposals (' + createstr + ');')
 
+# fields added in per fields derived from the CSV header line, so the fields
+# above are primarily for building the schema, so we can add other fields
 with open ('test.csv', 'r') as f:
     reader = csv.reader(f)
     columns = next(reader)
