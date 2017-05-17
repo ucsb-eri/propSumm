@@ -2,6 +2,13 @@
 
 Assembling proposal summary data.  Maybe provide some graphs.
 
+## General layout
++ **utils** - scripts for processing
++ **run** - folder with a Makefile to provide make targets for specific tasks
++ **sampleData** - contains the sample data we started with
++ **webroot** - contains a php script that displays the data using datatables.net.  references the sqlite3 db **sampleData/test.db** 
++ **var** - not really used yet.  Figured it would be used for any dynamically created files that should NOT be in this repo. 
+
 At this point we need to sort out what the specific goals are:
 + graphs?
 + reports?
@@ -12,3 +19,5 @@ Potential issues:
   + If so:
     + we need a viable key (or pair of fields to act as a key)
     + what fields do we compare to to determine whether the data is updated or not
+
+
