@@ -1,3 +1,3 @@
 # propSumm
 
-Assembling proposal summary data.  Maybe some graphs.
+Assembling proposal summary data.  Maybe provide some graphs.
