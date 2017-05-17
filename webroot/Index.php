@@ -30,7 +30,7 @@ if( file_exists(SQLITEDBFILE)){
     }
     //print_pre($columns,"column info");
 
-    $dataresult = $dbh->query("SELECT * FROM proposals",PDO::FETCH_NUM);
+    $dataresult = $dbh->query("SELECT * FROM proposals",PDO::FETCH_ASSOC);
     foreach($dataresult as $r){
         $row[] = $r;
         //print_pre($row,"data row direct from query");
@@ -54,6 +54,7 @@ else {
     </head>
 
 <body>
+<h1>Raw Data Display using DataTables.net</h1>
 
 <?php
 // process data
@@ -66,9 +67,14 @@ $output = array(
     "iTotalDisplayRecords" => $iTotal,
     "aaData" => array()
 );
-// actually, not sure why we are doing this...  this should be, in essense an
+// actually, not sure why we are doing this...  this should be, in essence an
 // exact duplicate of the rows array (since it was read in with numerical indeces)
-// not sure HOW this is broken, but it is
+// + it's broken ... not sure HOW this is broken, but it is
+// OH - it's expecting row data to be hashed...  thats OK, can switch that
+// that way, if we nuke specific column entries from column list, then the data wont
+// appear in the output :-)
+//
+// $row is expected to be an indexed array of rows with each row being hashed columns
 for ( $j=0 ; $j<count($row) ; $j++ ){
     $aRow=array();
     for ( $i=0 ; $i<count($columns) ; $i++ ){
@@ -79,7 +85,7 @@ for ( $j=0 ; $j<count($row) ; $j++ ){
 }
 
 //print_pre($output['aaData'],"all output data");
-$output['aaData'] = $row;
+//$output['aaData'] = $row;
 
 echo "<!-- data in comment\n";
 $x=0;
