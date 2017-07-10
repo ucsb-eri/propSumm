@@ -16,6 +16,7 @@ At this point we need to sort out what the specific goals are:
 + graphs?
 + reports?
 + how to summarize the data?
++ where is this installed?
 
 Potential issues:
 + Do we need to see changes from one data import to the next?
@@ -23,4 +24,6 @@ Potential issues:
     + we need a viable key (or pair of fields to act as a key)
     + what fields do we compare to to determine whether the data is updated or not
 
+## Currently cloned at spin:/home/cricess/propSumm
+Configuring system to be used there in a more automated fashion
 
