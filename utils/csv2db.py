@@ -68,9 +68,9 @@ class proposalsSummary:
         rem = re.compile('(\d\d)/(\d\d)/(\d\d\d\d)')
         createstr = ','.join(fields)
 
-        conn = sqlite3.connect(dbpath)
-        conn.text_factory = str
-        c = conn.cursor()
+        self.conn = sqlite3.connect(dbpath)
+        self.conn.text_factory = str
+        c = self.conn.cursor()
         c.execute('drop table if exists proposals;')
         c.execute('create table if not exists proposals (' + createstr + ');')
 
@@ -84,7 +84,7 @@ class proposalsSummary:
             columns = next(reader)
             query = 'insert into proposals({0}) values ({1})'
             query = query.format(','.join(columns), ','.join('?' * len(columns)))
-            cursor = conn.cursor()
+            cursor = self.conn.cursor()
             for data in reader:
                 #print query
                 # Lets tweak/cleanup the date fields of the CSV input
@@ -97,13 +97,13 @@ class proposalsSummary:
 
                 # Insert the data
                 cursor.execute(query, data)
-            conn.commit()
-        conn.close()
+            self.conn.commit()
+        self.conn.close()
         print "finished db load"
 
 
 def main():
-    if not opt.verbose:
+    if not opt.debug:
         devnull = open(os.devnull, 'w')
         sys.stderr = devnull
 
