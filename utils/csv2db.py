@@ -2,9 +2,6 @@
 import csv
 import sqlite3
 import re
-#import unicodedata
-#import chardet
-
 
 fields = [
   "Seq_Num INTEGER",
