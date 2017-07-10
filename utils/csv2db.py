@@ -65,7 +65,6 @@ class proposalsSummary:
           "epoch INTEGER DEFAULT (STRFTIME('%s','now'))"
         ]
 
-        rem = re.compile('(\d\d)/(\d\d)/(\d\d\d\d)')
         createstr = ','.join(fields)
 
         self.conn = sqlite3.connect(dbpath)
@@ -75,6 +74,7 @@ class proposalsSummary:
         c.execute('create table if not exists proposals (' + createstr + ');')
 
     def dbLoad(self,infile):
+        rem = re.compile('(\d\d)/(\d\d)/(\d\d\d\d)')
         if not os.path.exists(infile):
             print "ERROR: specified inputfile:",infile,"Doesnt exist, bailing ..."
         # fields added in per fields derived from the CSV header line, so the fields
