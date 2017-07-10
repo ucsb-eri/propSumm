@@ -99,6 +99,7 @@ class proposalsSummary:
                 cursor.execute(query, data)
             conn.commit()
         conn.close()
+        print "finished db load"
 
 
 def main():
@@ -109,9 +110,11 @@ def main():
     ps = proposalsSummary(opt.infile,opt.dbpath)
 
 
+
 if __name__ == '__main__':
     (opt, args) = p.parse_args()
     main()
+    print "finished main"
     if opt.debug:
         print "done"
     sys.exit(0)
