@@ -99,7 +99,8 @@ class proposalsSummary:
                 cursor.execute(query, data)
             self.conn.commit()
         self.conn.close()
-        print "finished db load"
+        if opt.verbose:
+            print "finished db load"
 
 
 def main():
@@ -114,7 +115,8 @@ def main():
 if __name__ == '__main__':
     (opt, args) = p.parse_args()
     main()
-    print "finished main"
+    if opt.verbose:
+        print "finished main"
     if opt.debug:
         print "done"
     sys.exit(0)
