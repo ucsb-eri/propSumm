@@ -7,13 +7,19 @@ old: cleanRaw buildDB
 daily: daily-toCSV daily-toDB daily-toBox
 
 daily-toCSV:
-	(cat ../../data/rsyncd/proposals-pi.dat | tr '\r' '\n' > ../var/daily.csv)
+	@(cat ../../data/rsyncd/proposals-pi.dat | tr '\r' '\n' > ../var/daily.csv)
 
 daily-toDB:
-	../utils/csv2db.py --input-file=../var/daily.csv --dbpath=../var/proposalsSumm.sqlite3
+	@../utils/csv2db.py --input-file=../var/daily.csv --dbpath=../var/proposalsSumm.sqlite3
 
 daily-toBox:
-	curl --user $(USER_CREDENTIALS) -T ../var/proposalsSumm.sqlite3 --ssl ftp://ftp.box.com/Caylor/proposalsSummary.sqlite3
+	@curl --user $(USER_CREDENTIALS) -T ../var/proposalsSumm.sqlite3 --ssl ftp://ftp.box.com/ERI-Admin/ > /dev/null 2>&1
+	@curl --user $(USER_CREDENTIALS) -T ../var/daily.csv --ssl ftp://ftp.box.com/ERI-Admin/ > /dev/null 2>&1
+
+daily-comments-archived:
+	#@echo "Building CSV from raw file"
+	#@echo "building sqlite db"
+	#@echo "Copying files to Box"
 
 cleanRaw:
 	( cd ../sampleData; cat raw.csv | tr '\r' '\n' > test.csv )
