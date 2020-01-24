@@ -27,3 +27,5 @@ Potential issues:
 ## Currently cloned at spin:/home/cricess/propSumm
 Configuring system to be used there in a more automated fashion
 
+cron job initiated at: spin:/etc/cron.d/propSumm 
+
